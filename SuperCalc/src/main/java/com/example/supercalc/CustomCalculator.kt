@@ -7,7 +7,7 @@ import com.example.supercalc.Strategies.CalcStrat
 class CustomCalculator(calculationStrategy: CalcStrat) : CalcStrat {
 
     // final
-    private val userCalcStrat: CalcStrat = calculationStrategy
+    private var userCalcStrat: CalcStrat = calculationStrategy
     private var userSet = true
 
     // Use default addition
@@ -22,5 +22,10 @@ class CustomCalculator(calculationStrategy: CalcStrat) : CalcStrat {
         }
 
         return userCalcStrat.gigaCalc(number)
+    }
+
+    fun swapStrat(newStrat: CalcStrat){
+
+        userCalcStrat = newStrat
     }
 }
