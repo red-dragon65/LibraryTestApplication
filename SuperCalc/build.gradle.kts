@@ -55,7 +55,7 @@ publishing {
 
             groupId = "com.cyberllama"
             artifactId = "super-calc"
-            version = "0.1.0"
+            version = "0.2.0"
 
             // This won't work, use "artifact" instead
             //from(components["java"])
