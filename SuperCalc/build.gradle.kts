@@ -41,7 +41,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/OWNER/REPOSITORY")
+            url = uri("https://maven.pkg.github.com/red-dragon65/LibraryTestApplication")
             credentials {
                 username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
                 password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
@@ -51,7 +51,7 @@ publishing {
 
     // Define the package you want to publish
     publications {
-        register<MavenPublication>("gpr") {
+        register<MavenPublication>("release") {
 
             groupId = "com.cyberllama"
             artifactId = "super-calc"
@@ -59,7 +59,14 @@ publishing {
 
             // This won't work, use "artifact" instead
             //from(components["java"])
-            artifact("${layout.buildDirectory}/outputs/SuperCalc-release.arr")
+
+            // You can manually load the artifact if needed
+            //artifact("${layout.buildDirectory}/outputs/arr/SuperCalc-release.arr")
+
+            // Android docs recommended doing this
+            afterEvaluate{
+                from(components["release"])
+            }
         }
     }
 }
