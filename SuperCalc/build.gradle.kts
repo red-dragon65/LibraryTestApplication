@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    `maven-publish`
 }
 
 android {
@@ -30,44 +29,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
-    }
-}
-
-
-
-publishing {
-
-    // Define the repository the package will be published to
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/red-dragon65/LibraryTestApplication")
-            credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
-            }
-        }
-    }
-
-    // Define the package you want to publish
-    publications {
-        register<MavenPublication>("release") {
-
-            groupId = "com.cyberllama"
-            artifactId = "super-calc"
-            version = "0.2.0"
-
-            // This won't work, use "artifact" instead
-            //from(components["java"])
-
-            // You can manually load the artifact if needed
-            //artifact("${layout.buildDirectory}/outputs/arr/SuperCalc-release.arr")
-
-            // Android docs recommended doing this
-            afterEvaluate{
-                from(components["release"])
-            }
-        }
     }
 }
 
