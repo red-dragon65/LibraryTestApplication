@@ -40,8 +40,8 @@ class MainActivity : AppCompatActivity() {
     private fun calculateSumFromFields(){
 
         // Get the input numbers
-        var numOne: Int = 0
-        var numTwo: Int = 0
+        var numOne = 0
+        var numTwo = 0
 
         // Avoid shitting the bed
         if(inputNumberTwo.text.toString().isNotEmpty() || inputNumberTwo.text.toString().isNotEmpty()){
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
 
         // This uses our custom library to calculate the sum!!!
-        val calculator: CalculateSum = CalculateSum()
+        val calculator = CalculateSum()
         val output: Int = calculator.calculateSum(numOne, numTwo)
 
         // Test the second library
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
 
         // Display the result
-        val resultText: String = "The sum of $numOne + $numTwo is $output"
+        val resultText = "The sum of $numOne + $numTwo is $output"
         textViewResult.text = resultText
 
         // Reset the input fields
