@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    `maven-publish`
 }
 
 android {
@@ -31,6 +32,32 @@ android {
         jvmTarget = "1.8"
     }
 }
+
+
+// THIS PUBLISHES THE MODULE LOCALLY FOR TESTING PURPOSES
+// Stores the file under ~/.m2/repository/com/cyberllama/super-calc
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "com.cyberllama"
+            artifactId = "super-calc"
+            version = "0.1.0"
+
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
+    }
+
+    // THIS WILL PUBLISH LOCALLY FOR TESTING PURPOSES
+    repositories {
+        maven {
+            name = "myrepo"
+            url = uri(layout.buildDirectory.dir("repo"))
+        }
+    }
+}
+
 
 dependencies {
 
